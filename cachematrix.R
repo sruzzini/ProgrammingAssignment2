@@ -7,7 +7,7 @@
 ##	This function takes a cache matrix object, "x", and creates a "cache matrix" object
 ## from it.  The cache matrix object has the functions: get, set, getInverse, and
 ## setInverse; which are described in the body of the function.
-##Params:
+##Parameters:
 ##	x - a matrix object to be converted into a cacheable matrix
 makeCacheMatrix <- function(x = matrix()) {
 	inverse <- NULL
@@ -28,7 +28,7 @@ makeCacheMatrix <- function(x = matrix()) {
 	##gets the cached inverse value of the data, "invers"
 	getInverse <- function() inverse
 
-	##the cache matrix objec that is returned
+	##return the cache matrix object
 	list(set = set,
 		get = get,
 		setInverse = setInverse,
@@ -42,7 +42,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## the inverse of x has already been solved and is stored in the x's cache, then the
 ## function will return the value stored in x's cache.  If the invers of x has not been
 ## solved, then the function will compute x's invers and store it in x's cache
-##Params:
+##Parameters:
 ##	x - a cache matrix object that will be inversed, or cache read
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -58,6 +58,8 @@ cacheSolve <- function(x, ...) {
         ##If not, compute it with the "solve" method
         mat <- x$get()
         result <- solve(mat, ...)
+
+        ##set the inverse in the cache
         x$setInverse(result)
         result
 }
